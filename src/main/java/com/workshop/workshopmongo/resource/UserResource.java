@@ -6,6 +6,7 @@ import java.util.stream.Collectors;
 
 import com.workshop.workshopmongo.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
@@ -48,5 +49,15 @@ public class UserResource {
 	public ResponseEntity<Void> delete(@PathVariable String id){
 		uService.delete(id);
 		return ResponseEntity.noContent().build();
+	}
+
+	@RequestMapping(value = "/{id}", method = RequestMethod.PUT)
+	public ResponseEntity<Void> update(@RequestBody UserDTO objDTO, @PathVariable String id){
+
+		User obj = uService.fromDTO(objDTO);
+		obj.setId(id);
+		obj = uService.update(obj);
+		return ResponseEntity.noContent().build();
+
 	}
 }
