@@ -4,6 +4,7 @@ import java.net.URI;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import com.workshop.workshopmongo.domain.Post;
 import com.workshop.workshopmongo.dto.UserDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.mongodb.repository.Update;
@@ -59,5 +60,12 @@ public class UserResource {
 		obj = uService.update(obj);
 		return ResponseEntity.noContent().build();
 
+	}
+
+	@RequestMapping(value = "/{id}/posts", method = RequestMethod.GET)
+	public ResponseEntity<List<Post>> findPosts(@PathVariable String id){
+		User obj = uService.findById(id);
+
+		return ResponseEntity.ok().body(obj.getPosts());
 	}
 }
