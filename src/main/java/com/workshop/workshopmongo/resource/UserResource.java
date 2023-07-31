@@ -6,13 +6,12 @@ import java.util.stream.Collectors;
 
 import com.workshop.workshopmongo.domain.Post;
 import com.workshop.workshopmongo.dto.UserDTO;
+import com.workshop.workshopmongo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.mongodb.repository.Update;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import com.workshop.workshopmongo.domain.User;
-import com.workshop.workshopmongo.service.UserService;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
 
 @RestController
